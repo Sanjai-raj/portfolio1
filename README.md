@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sat Naing Portfolio & Blog
 
 ![satnaing-portfolio-and-blog](https://user-images.githubusercontent.com/53733092/169645862-d1dda9cb-482f-4428-a63c-8eaf6910ab35.png)
@@ -79,3 +80,6 @@ The digital art in the hero section was illustrated by a friend of mine ([Swann 
 ## Author
 
 - [@satnaing](https://satnaing.dev)
+=======
+# portfolio1
+>>>>>>> 3855eb0ae043de2df8d2ba108a20f888658ff913
