@@ -50,13 +50,13 @@ const BlogSection: React.FC<Props> = ({ posts }) => {
             order={1}
             show={isOnScreen}
           >
-            <h2 className="section-heading">Blog</h2>
+            <h2 className="section-heading">Certificates</h2>
           </RoughNotation>
         </div>
         <div className="text-center mb-8" ref={elementRef}>
-          I write blog posts about what I've done and what I'm doing{" "}
+          Always learning, always building {" "}
           <br className="hidden sm:block" aria-hidden="true" />
-          as a documenting practice. Here are some of my recent blog posts.
+          Evolving with every new tool, language, and technology.
         </div>
         <div>
           <Swiper
@@ -97,7 +97,7 @@ const BlogSection: React.FC<Props> = ({ posts }) => {
           </Swiper>
           <div className="mt-4 text-center">
             <Link href="/blog" className="link">
-              Read all blog posts{" "}
+              See all Certificates{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 inline-block"

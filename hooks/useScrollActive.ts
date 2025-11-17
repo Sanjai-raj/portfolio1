@@ -1,30 +1,29 @@
-import { useState, useEffect, RefObject } from "react";
+import { useEffect, useState } from "react";
 
-export default function useScrollActive(ref: RefObject<HTMLElement>) {
-  const [state, setState] = useState(false);
+export default function useScrollActive(ref: React.RefObject<HTMLElement | null>, threshold = 0.3) {
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
-    const scrollActive = () => {
-      const scrollY = window.pageYOffset;
+    if (typeof window === "undefined") return;
+    if (!ref.current) return;
 
-      const sectionHeight = ref.current?.offsetHeight;
-      const sectionTop = ref.current?.offsetTop! - 80;
-      if (
-        scrollY > sectionTop &&
-        scrollY <= sectionTop + (sectionHeight as number)
-      ) {
-        setState(true);
-      } else {
-        setState(false);
-      }
+    const onScroll = () => {
+      const rect = ref.current!.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      // Consider active when top is within viewport threshold
+      const visibleRatio = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+      setActive(visibleRatio >= threshold);
     };
-    scrollActive();
-    window.addEventListener("scroll", scrollActive);
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
 
     return () => {
-      window.removeEventListener("scroll", scrollActive);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [ref, threshold]);
 
-  return state;
+  return active;
 }

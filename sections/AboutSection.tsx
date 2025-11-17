@@ -1,117 +1,157 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 import { useTheme } from "next-themes";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+// DON'T import gsap or ScrollTrigger at module scope
+import dynamic from "next/dynamic";
+import profile from "../public/sanjai.png";
 
 import { useSection } from "context/section";
 import useOnScreen from "hooks/useOnScreen";
 import useScrollActive from "hooks/useScrollActive";
 
-import satNaing from "../public/satnaing.webp";
 import AboutBgSvg from "@/components/AboutBgSvg";
 import EduGroup from "@/components/EduGroup";
 
 const AboutSection: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const eduRef = useRef<HTMLDivElement | null>(null);
   const isSecOnScreen = useOnScreen(sectionRef);
 
-  useEffect(() => {
-    const q = gsap.utils.selector(sectionRef);
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // profile-picture
-    gsap.fromTo(
-      q(".profile-picture"),
-      {
-        x: -200,
-        opacity: 0,
-      },
-      {
-        x: 0,
-        opacity: 1,
-        scrollTrigger: {
-          trigger: q(".profile-picture"),
-          start: "20% bottom",
-        },
-      }
-    );
-
-    const fromAnimation = {
-      y: 100,
-      opacity: 0,
-    };
-
-    const toAnimation = (triggerTarget: string) => ({
-      y: 0,
-      opacity: 1,
-      scrollTrigger: {
-        trigger: q(`.${triggerTarget}`),
-        start: "top bottom",
-      },
-    });
-
-    // about-intro
-    gsap.fromTo(q(".about-intro"), fromAnimation, toAnimation("about-intro"));
-
-    // edu-bg
-    gsap.fromTo(q(".edu-bg"), fromAnimation, toAnimation("edu-bg"));
-
-    // bg svg parallax effect
-    gsap.fromTo(
-      q(".bg-svg"),
-      { y: -80 },
-      {
-        scrollTrigger: {
-          trigger: q(".bg-svg"),
-          scrub: true,
-        },
-        y: 65,
-        duration: 3,
-      }
-    );
-
-    // image bg svg parallax effect
-    gsap.fromTo(
-      q(".img-svg"),
-      { y: -30 },
-      {
-        scrollTrigger: {
-          trigger: q(".img-svg"),
-          start: "80% 75%",
-          scrub: true,
-        },
-        y: 30,
-      }
-    );
-  }, []);
-
   const { theme } = useTheme();
-
-  const eduRef = useRef<HTMLDivElement>(null);
 
   // Set active link for about section
   const aboutSection = useScrollActive(sectionRef);
   const { onSectionChange } = useSection();
+
   useEffect(() => {
-    aboutSection ? onSectionChange!("who am i?") : onSectionChange!("");
+    if (typeof onSectionChange === "function") {
+      onSectionChange(aboutSection ? "who am i?" : "");
+    }
   }, [aboutSection, onSectionChange]);
 
+  useEffect(() => {
+    // run only on client and only if the ref is set
+    if (typeof window === "undefined" || !sectionRef.current) return;
+
+    let ctx: any;
+    let localGsap: any;
+    let localScrollTrigger: any;
+
+    (async () => {
+      try {
+        // dynamic import and normalize exports across environments
+        const gsapMod: any = await import("gsap");
+        localGsap = gsapMod.gsap ?? gsapMod.default ?? gsapMod;
+
+        // try plugin import paths and normalize
+        let stMod: any;
+        try {
+          stMod = await import("gsap/ScrollTrigger");
+        } catch (e) {
+          // fallback to dist path if some setups require it
+          stMod = await import("gsap/dist/ScrollTrigger");
+        }
+        localScrollTrigger = stMod.ScrollTrigger ?? stMod.default ?? stMod;
+
+        if (localScrollTrigger && localGsap && typeof localGsap.registerPlugin === "function") {
+          localGsap.registerPlugin(localScrollTrigger);
+        } else {
+          // if registerPlugin is not available, bail early to avoid runtime error
+          // (this is defensive; normally the above will succeed)
+          return;
+        }
+
+        // create context scoped to the section node
+        ctx = localGsap.context((self: any) => {
+          const q = localGsap.utils.selector(self);
+
+          // profile-picture animation
+          localGsap.fromTo(
+            q(".profile-picture"),
+            { x: -200, opacity: 0 },
+            {
+              x: 0,
+              opacity: 1,
+              scrollTrigger: { trigger: q(".profile-picture"), start: "20% bottom" },
+            }
+          );
+
+          const fromAnimation = { y: 100, opacity: 0 };
+          const toAnimation = (triggerTarget: string) => ({
+            y: 0,
+            opacity: 1,
+            scrollTrigger: { trigger: q(`.${triggerTarget}`), start: "top bottom" },
+          });
+
+          // about-intro
+          localGsap.fromTo(q(".about-intro"), fromAnimation, toAnimation("about-intro"));
+
+          // edu-bg
+          localGsap.fromTo(q(".edu-bg"), fromAnimation, toAnimation("edu-bg"));
+
+          // bg svg parallax effect
+          localGsap.fromTo(
+            q(".bg-svg"),
+            { y: -80 },
+            {
+              y: 65,
+              duration: 3,
+              scrollTrigger: { trigger: q(".bg-svg"), scrub: true },
+            }
+          );
+
+          // image bg svg parallax effect
+          localGsap.fromTo(
+            q(".img-svg"),
+            { y: -30 },
+            {
+              y: 30,
+              scrollTrigger: { trigger: q(".img-svg"), start: "80% 75%", scrub: true },
+            }
+          );
+        }, sectionRef.current); // scope to DOM node
+      } catch (err) {
+        // fail quietly but log for debugging
+        // eslint-disable-next-line no-console
+        console.warn("GSAP init failed:", err);
+      }
+    })();
+
+    return () => {
+      // revert GSAP context
+      try {
+        if (ctx && typeof ctx.revert === "function") ctx.revert();
+      } catch (e) {
+        // ignore
+      }
+
+      // kill any ScrollTrigger instances (best-effort)
+      try {
+        const ScrollTriggerGlobal =
+          (window as any)?.ScrollTrigger ||
+          (localGsap && localGsap.ScrollTrigger) ||
+          localScrollTrigger;
+        if (ScrollTriggerGlobal && typeof ScrollTriggerGlobal.getAll === "function") {
+          ScrollTriggerGlobal.getAll().forEach((t: any) => t.kill && t.kill());
+        }
+      } catch (e) {
+        // ignore - cleanup best-effort
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div
-      ref={sectionRef}
-      className="about-panel bg-white dark:bg-[#1B2731] relative"
-    >
+    <div ref={sectionRef} className="about-panel bg-white dark:bg-[#1B2731] relative">
       <section id="whoami" className="section">
         <RoughNotationGroup>
           <div className="text-center">
             <RoughNotation
               type="underline"
-              color={`${
-                theme === "light" ? "rgb(0, 122, 122)" : "rgb(5 206 145)"
-              }`}
+              color={`${theme === "light" ? "rgb(0, 122, 122)" : "rgb(5 206 145)"}`}
               strokeWidth={2}
               order={1}
               show={isSecOnScreen}
@@ -119,6 +159,7 @@ const AboutSection: React.FC = () => {
               <h2 className="section-heading">Who am I?</h2>
             </RoughNotation>
           </div>
+
           <div className="md:grid grid-rows-5 lg:grid-rows-6 grid-cols-5">
             <div className="col-start-1 col-end-3 row-start-1 row-end-4 lg:row-end-7 lg:col-start-1 lg:col-end-3 flex justify-center items-center py-4 lg:mb-[20%]">
               <div className="relative w-72">
@@ -135,11 +176,11 @@ const AboutSection: React.FC = () => {
 
                 <div className="profile-picture overflow-hidden md:overflow-visible rounded-md md:shadow-2xl">
                   <Image
-                    src={satNaing}
-                    width={1700}
-                    height={1790}
+                    src={profile}
+                    width={500}
+                    height={530}
                     priority
-                    alt="Sat Naing profile picture"
+                    alt="Sanjairaj profile picture"
                     className="rounded-md"
                   />
                 </div>
@@ -168,12 +209,11 @@ const AboutSection: React.FC = () => {
               </div>
             </div>
 
-            <p className="col-start-1 col-end-3 row-start-4 row-end-6 lg:row-start-1 lg:row-end-2 lg:col-start-3 lg:col-end-6 lg:ml-8 lg:mt-auto about-intro">
-              With 4+ years of comprehensive experience in web application
-              development, I have polished my skills in both frontend and
-              backend development. In addition to my hands-on experience in web
-              development, my education has also played a critical role in
-              providing a strong foundation for my career.
+            <p className="col-start-1 col-end-4 row-start-4 row-end-6 lg:row-start-1 lg:row-end-2 lg:col-start-3 lg:col-end-6 lg:ml-8 lg:mt-auto about-intro">
+              I am a MERN stack developer with a strong foundation in computer science and
+              experience building secure, scalable web applications. Certified in Pega System
+              Architect, AWS Cloud Practitioner, and MongoDB. I continuously explore modern
+              technologies to create impactful digital solutions.
             </p>
 
             <div
@@ -197,29 +237,36 @@ const AboutSection: React.FC = () => {
 const educationInfo = [
   {
     id: 1,
-    title: "B.Sc (Hons) in Computing",
-    subTitle: "Edinburgh Napier University | 2018 ~ 2019",
+    title: "B.E in Computer Science and Engineering",
+    subTitle: "VSB College of Engineering, Coimbatore | 2021 - 2025",
     list: [
-      "Studied computer science, software development, DevOps",
-      "Graduated with First Class Honours",
-      "Got merit in 7 modules out of 9",
+      "Studied software engineering, algorithms, cloud, and full-stack development",
+      "Graduating with CGPA 8.0",
+      "Hands-on experience in MERN stack and AI-integrated applications",
     ],
   },
   {
     id: 2,
-    title: "HND in Computing & System Development",
-    subTitle: "Info Myanmar University | 2016 - 2018",
+    title: "Certifications",
+    subTitle: "Multiple Platforms | 2023 - 2024",
     list: [
-      "Studied modules specializing in software development",
-      "Passed HND with overall Merit",
+      "Pega System Architect (2024)",
+      "AWS Cloud Practitioner (2023)",
+      "MongoDB University – M001 (2024)",
+      "Cloud Computing & Web Development (2023)",
     ],
   },
   {
     id: 3,
-    title: "IELTS",
-    subTitle: "British Council Myanmar | 2017",
-    list: ["Got overall band score 6.5."],
+    title: "Technical Focus",
+    subTitle: "Specializations",
+    list: [
+      "Full-Stack Development (MERN Stack)",
+      "Deep Learning Model Integration",
+      "Cloud & DevOps Basics (AWS, Docker, Firebase)",
+    ],
   },
 ];
 
-export default AboutSection;
+const AboutSectionClient = dynamic(() => Promise.resolve(AboutSection), { ssr: false });
+export default AboutSectionClient;

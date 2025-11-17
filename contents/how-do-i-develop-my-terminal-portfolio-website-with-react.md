@@ -1,7 +1,7 @@
 ---
 coverImageWidth: "1200"
 coverImageHeight: "700"
-datetime: 2022-06-09T03:42:51Z
+datetime: 2024-07
 tags:
   - JavaScript
   - ReactJS
@@ -10,16 +10,13 @@ tags:
   - TypeScript
 author: Sat Naing
 type: article
-coverImage: https://res.cloudinary.com/noezectz/image/upload/v1654754125/SatNaing/terminal-screenshot_gu3kkc.png
+coverImage: "/pega.png"
 coverImageAlt: Screenshot of Terminal Portfolio Website
-title: How Do I Develop My Terminal Portfolio Website with React
-description:
-  Sat Naing's React terminal portfolio website. Styled-components is used
-  for styling; and multiple themes supported.
-excerpt:
-  Developing a terminal-like website using ReactJS, TypeScript and Styled-Components.
-  Includes features like autocomplete, multiple themes, command hints etc.
-slug: how-do-i-develop-my-terminal-portfolio-website-with-react
+title: Pega System Architect
+description: Certified in Pega System Architecture, demonstrating skills in application design and rule-based workflow development.
+excerpt: Professional certification validating core application-building skills and rule-based development concepts.
+slug: pega-system-architect-certificate
+
 featured: true
 category: How Do I
 ---

@@ -1,22 +1,24 @@
-import { useEffect, useState, useRef, RefObject } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export default function useOnScreen(ref: RefObject<HTMLElement>) {
-  const observerRef = useRef<IntersectionObserver | null>(null);
+export default function useOnScreen<T extends Element = Element>(ref: React.RefObject<T>, options?: IntersectionObserverInit) {
   const [isOnScreen, setIsOnScreen] = useState(false);
 
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(([entry]) =>
-      setIsOnScreen(entry.isIntersecting)
-    );
-  }, []);
+    if (typeof window === "undefined") return;
+    if (!ref.current) return;
+    if (!("IntersectionObserver" in window)) {
+      // fallback: assume visible on client
+      setIsOnScreen(true);
+      return;
+    }
 
-  useEffect(() => {
-    observerRef.current!.observe(ref.current!);
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsOnScreen(entry.isIntersecting);
+    }, options);
 
-    return () => {
-      observerRef.current!.disconnect();
-    };
-  }, [ref]);
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [ref, options]);
 
   return isOnScreen;
 }

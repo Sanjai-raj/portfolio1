@@ -1,12 +1,10 @@
 ---
-title: This is just a testing
-description: This is just an OG description
-excerpt:
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-  incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel
-  fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities
-  morbi tempus.
-datetime: 2020-06-17T05:35:07.000+00:00
+title: Intro to MongoDB (MongoDB University)
+description: Completed MongoDB University training on NoSQL fundamentals, CRUD operations, aggregation, and schema design.
+excerpt: MongoDB beginner course covering document modeling, CRUD operations, and database fundamentals.
+slug: intro-to-mongodb-university
+
+datetime: 2025-07
 featured: false
 category: Random
 author: Sat Naing
