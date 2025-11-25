@@ -15,7 +15,7 @@ const HeroSection: React.FC = () => {
 
       <span
         aria-hidden="true"
-        className="absolute -top-36 rotate-12 text-gray-100 dark:text-[#1f2e3a] text-9xl scale-150 tracking-wide font-bold select-none pointer-events-none text-center z-0"
+        className="absolute -top-36 rotate-12 text-gra0 dark:text-[#1f2e3a] text-9xl scale-150 tracking-wide font-bold select-none pointer-events-none text-center z-0"
       >
         PASSIONATE PROGRAMMER FREELANCER SOFTWARE DEVELOPER
       </span>
@@ -42,21 +42,28 @@ const HeroSection: React.FC = () => {
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
+              duration: 0.8,
               delay: 0.5,
+              ease: "easeOut"
             }}
             className="absolute top-14 sm:top-16 left-0 scale-[.41] xs:scale-[.45] pointer-events-none"
           >
-            <Image
-              src={laptop}
-              width={559}
-              height={386}
-              aria-hidden="true"
-              alt="Laptop illustration"
-            />
+            <motion.div
+              animate={{ y: [-10, 10, -10] }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <Image
+                src={laptop}
+                width={559}
+                height={386}
+                aria-hidden="true"
+                alt="Laptop illustration"
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>

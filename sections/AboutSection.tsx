@@ -131,7 +131,7 @@ const AboutSection: React.FC = () => {
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="col-start-3 col-end-6 row-start-1 row-end-6 lg:row-start-2 lg:row-end-7 md:ml-8 place-content-end"
+              className="col-start-3 col-end-6 row-start-1 row-end-6 lg:row-start-2 lg:row-end-7 md:ml-8"
             >
               <p className="my-4 text-primary dark:text-primarylight font-semibold">Here is my educational background.</p>
               {educationInfo.map((edu, index) => (
