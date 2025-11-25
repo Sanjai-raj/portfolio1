@@ -12,8 +12,7 @@ import terminalPortfolio from "public/car-rental-2.png";
 import haruFashion from "public/Madam-choco.png";
 import haruApi from "public/Social-clone.png";
 import astroPaper from "public/Deep-fake.png";
-import nextBookstore from "public/projects/next-bookstore.webp";
-import shadcnAdmin from "public/projects/shadcn-admin.webp";
+
 
 const ProjectSection: React.FC = () => {
   const { theme } = useTheme();
@@ -56,7 +55,7 @@ const ProjectSection: React.FC = () => {
         Other projects can be explored in{" "}
         <a
           href="https://github.com/Sanjai-raj"
-          className="font-medium underline link-outline text-marrsgreen dark:text-carrigreen whitespace-nowrap"
+          className="font-medium underline link-outline text-primary dark:text-primarylight whitespace-nowrap"
         >
           my github profile
         </a>
@@ -98,7 +97,7 @@ const projects = [
       />
     ),
     desc: "A MERN stack–based car rental application for seamless booking, vehicle management, and role-based user/admin access. ",
-    tags: ["React.js", "Express.js", "Node.js","MongoDB", "REST API"],
+    tags: ["React.js", "Express.js", "Node.js", "MongoDB", "REST API"],
     liveUrl: "https://terminal.satnaing.dev/",
     codeUrl: "https://github.com/satnaing/terminal-portfolio",
     bgColor: "bg-[#B4BEE0]",

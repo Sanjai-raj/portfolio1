@@ -18,20 +18,27 @@ module.exports = {
     },
     extend: {
       colors: {
-        bglight: "#F9FAFB",
-        marrslight: "#1C9A9A",
-        marrsgreen: "#007A7A",
-        marrsdark: "#004D4D",
-        cardlight: "#EFF3F3",
+        bglight: "#F0F4F8", // Light blue-ish gray
+        bgdark: "#0F172A", // Slate 900
 
-        // bgdark: "#2D2D2D",
-        bgdark: "#1D2A35",
-        carrilight: "#57DCB4",
-        carrigreen: "#05CE91",
-        carridark: "#00835B",
-        // carddark: "#383838",
-        carddark: "#22323F",
-        textlight: "#F9FAFB",
+        // Primary Blue Palette
+        primary: "#3B82F6", // Blue 500
+        primarydark: "#1D4ED8", // Blue 700
+        primarylight: "#60A5FA", // Blue 400
+
+        // Legacy mappings for compatibility (mapped to blue)
+        marrslight: "#60A5FA",
+        marrsgreen: "#3B82F6",
+        marrsdark: "#1D4ED8",
+
+        cardlight: "#FFFFFF",
+        carddark: "#1E293B", // Slate 800
+
+        carrilight: "#60A5FA",
+        carrigreen: "#3B82F6",
+        carridark: "#1D4ED8",
+
+        textlight: "#F0F4F8",
       },
     },
   },

@@ -1,6 +1,4 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { motion } from "framer-motion";
 
 type Props = {
   index: number;
@@ -18,53 +16,19 @@ type Props = {
 };
 
 const ProjectCard: React.FC<Props> = ({ index, project }) => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const even = index % 2 === 0;
-
-  // Animations
-  useEffect(() => {
-    const q = gsap.utils.selector(sectionRef);
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: `70% bottom`,
-      },
-    });
-
-    tl.fromTo(
-      q(".project-image"),
-      { opacity: 0, y: 100 },
-      {
-        opacity: 1,
-        y: 0,
-        ease: "Power3.easeInOut",
-        duration: 0.5,
-        stagger: 0.2,
-      }
-    )
-      .fromTo(q(".project-text"), { y: 100 }, { y: 0, stagger: 0.2 }, "<25%")
-      .fromTo(
-        q(".project-desc"),
-        { opacity: 0 },
-        { opacity: 1, stagger: 0.2 },
-        "<10%"
-      )
-      .fromTo(
-        q(".project-tags"),
-        { y: -40 },
-        { y: 0, stagger: 0.1, ease: "Elastic.easeOut" },
-        "<25%"
-      );
-  }, []);
-
   return (
-    <div ref={sectionRef} className={`md:basis-1/2 md:px-8 py-2 md:py-4`}>
-      <div className={`project-card project-card-${index}`}>
-        <div className="overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className={`md:basis-1/2 md:px-8 py-2 md:py-4`}
+    >
+      <motion.div
+        whileHover={{ y: -10 }}
+        className={`project-card project-card-${index} h-full flex flex-col`}
+      >
+        <div className="overflow-hidden rounded-xl shadow-sm hover:shadow-xl transition-shadow duration-300">
           <div
             className={`project-image ${project.bgColor} relative aspect-[16/9]`}
           >
@@ -73,35 +37,35 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
         </div>
 
         {/* TITLE ONLY — icons removed */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden mt-4">
           <div className="project-text">
-            <h3 className="text-marrsgreen dark:text-carrigreen text-lg my-2 font-medium">
+            <h3 className="text-primary dark:text-primarylight text-xl my-2 font-bold">
               {project.title}
             </h3>
           </div>
         </div>
 
         {/* DESCRIPTION */}
-        <div className="overflow-hidden">
-          <p className="project-desc">{project.desc}</p>
+        <div className="overflow-hidden flex-grow">
+          <p className="project-desc text-gray-600 dark:text-gray-300 leading-relaxed">{project.desc}</p>
         </div>
 
         {/* TAGS */}
         <ul
           aria-label={`Tech Stack used in ${project.title}`}
-          className={`flex flex-wrap mt-2 mb-4 md:mt-2 md:mb-6 text-sm overflow-hidden`}
+          className={`flex flex-wrap mt-4 mb-4 md:mt-4 md:mb-6 text-sm overflow-hidden`}
         >
           {project.tags.map((tag) => (
             <li
               key={tag}
-              className={`project-tags mr-2 my-1 bg-[#E2EFEF] dark:bg-carddark py-1 px-2 rounded`}
+              className={`project-tags mr-2 my-1 bg-blue-50 dark:bg-slate-800 text-primary dark:text-primarylight py-1 px-3 rounded-full font-medium`}
             >
               {tag}
             </li>
           ))}
         </ul>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
