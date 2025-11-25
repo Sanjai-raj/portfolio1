@@ -64,6 +64,33 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
             </li>
           ))}
         </ul>
+
+        {/* LIVE LINK */}
+        <div className="mt-auto flex justify-end">
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-sm font-medium text-primary dark:text-primarylight hover:underline group"
+          >
+            <span>Live Preview</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            >
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
       </motion.div>
     </motion.div>
   );
