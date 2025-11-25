@@ -100,20 +100,43 @@ const Header: React.FC = () => {
           <nav className="flex items-center">
             <div className="glassmorphism md:bg-transparent md:dark:bg-transparent md:backdrop-blur-none fixed md:static bottom-4 z-30 left-1/2 md:left-auto transform -translate-x-1/2 md:transform-none bg-bglight dark:bg-carddark dark:text-textlight w-11/12 rounded drop-shadow-lg md:drop-shadow-none">
               <ul className="flex justify-evenly items-center py-1">
-                {navLinks.map((navLink) => (
-                  <li key={navLink.url}>
-                    <a
-                      href={navLink.url}
-                      className={`text-sm md:text-lg flex flex-col items-center w-[4.5rem] md:w-auto dark:fill-textlight md:mr-6 md:hover:text-marrsgreen md:dark:hover:text-carrigreen link-outline ${
-                        currentSection === navLink.text.toLocaleLowerCase() &&
-                        "text-marrsgreen dark:text-carrigreen fill-marrsgreen dark:fill-carrigreen"
-                      }`}
-                    >
-                      <span className="md:hidden">{navLink.svg}</span>
-                      <span className="whitespace-nowrap">{navLink.text}</span>
-                    </a>
-                  </li>
-                ))}
+                {navLinks.map((navLink) => {
+                  const sectionName =
+                    navLink.text === "Certificates"
+                      ? "blog"
+                      : navLink.text.toLowerCase();
+                  const isActive = currentSection === sectionName;
+
+                  // Define colors based on section
+                  const isBlueSection =
+                    sectionName === "contact" || sectionName === "blog";
+
+                  // Base hover colors
+                  const hoverClass = isBlueSection
+                    ? "md:hover:text-blue-500 md:dark:hover:text-blue-400"
+                    : "md:hover:text-emerald-500 md:dark:hover:text-emerald-400";
+
+                  // Active colors
+                  const activeClass = isActive
+                    ? isBlueSection
+                      ? "text-blue-500 dark:text-blue-400 fill-blue-500 dark:fill-blue-400"
+                      : "text-emerald-500 dark:text-emerald-400 fill-emerald-500 dark:fill-emerald-400"
+                    : "";
+
+                  return (
+                    <li key={navLink.url}>
+                      <a
+                        href={navLink.url}
+                        className={`text-sm md:text-lg flex flex-col items-center w-[4.5rem] md:w-auto dark:fill-textlight md:mr-6 ${hoverClass} link-outline ${activeClass}`}
+                      >
+                        <span className="md:hidden">{navLink.svg}</span>
+                        <span className="whitespace-nowrap">
+                          {navLink.text}
+                        </span>
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <button

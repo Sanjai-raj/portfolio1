@@ -85,21 +85,21 @@ const projects = [
     githubApi: "https://api.github.com/repos/satnaing/astro-paper",
   },
   {
-    title: "Car Rental Site",
+    title: "Cross-City Rentals",
     type: "MERN Stack",
     image: (
       <Image
         src={terminalPortfolio}
         sizes="100vw"
         fill
-        alt="Car Rental Site"
+        alt="Cross-City Rentals"
         className="transition-transform duration-500 hover:scale-110 object-cover"
       />
     ),
     desc: "A MERN stack–based car rental application for seamless booking, vehicle management, and role-based user/admin access. ",
     tags: ["React.js", "Express.js", "Node.js", "MongoDB", "REST API"],
-    liveUrl: "https://terminal.satnaing.dev/",
-    codeUrl: "https://github.com/satnaing/terminal-portfolio",
+    liveUrl: "https://crosscity-rentals5.onrender.com/",
+    codeUrl: "https://github.com/satnaing/crosscity-rentals",
     bgColor: "bg-[#B4BEE0]",
     githubApi: "https://api.github.com/repos/satnaing/terminal-portfolio",
   },
@@ -117,7 +117,7 @@ const projects = [
     ),
     desc: "A responsive React-based blog website featuring product highlights, interactive UI, and smooth navigation built with Tailwind CSS.",
     tags: ["NextJS", "TailwindCSS", "JavaScript"],
-    liveUrl: "https://haru-fashion.vercel.app/",
+    liveUrl: "https://madamecocobysris.netlify.app/",
     codeUrl: "https://github.com/satnaing/haru-fashion",
     bgColor: "bg-[#A6CECE]",
     githubApi: "https://api.github.com/repos/satnaing/haru-fashion",
@@ -137,9 +137,9 @@ const projects = [
     desc: "A RESTful API developed for Haru fashion ecommerce project. Include CRUD operations, authentication, authorization, forgot/reset password and full-text search.",
     tags: ["UI/UX Design", "Figma"],
     liveUrl: "https://satnaing.github.io/haru-api/",
-    codeUrl: "https://github.com/satnaing/haru-api",
+    codeUrl: "https://github.com/Sanjai-raj/haru-api",
     bgColor: "bg-[#C5E4E7]",
-    githubApi: "https://api.github.com/repos/satnaing/haru-api",
+    githubApi: "https://api.github.com/repos/Sanjai-raj/haru-api",
   }
 ];
 

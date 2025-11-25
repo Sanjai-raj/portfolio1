@@ -7,7 +7,7 @@ slug: intro-to-mongodb-university
 datetime: 2025-07
 featured: false
 category: Random
-author: Sat Naing
+author: Sanjairaj
 type: article
 coverImage: https://res.cloudinary.com/noezectz/image/upload/v1647791837/SatNaing/tip-calculator_mkdj8a.png
 coverImageAlt: Tip calculator website on a laptop and a mobile device

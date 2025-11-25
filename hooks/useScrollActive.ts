@@ -10,9 +10,12 @@ export default function useScrollActive(ref: React.RefObject<HTMLElement | null>
     const onScroll = () => {
       const rect = ref.current!.getBoundingClientRect();
       const vh = window.innerHeight || document.documentElement.clientHeight;
-      // Consider active when top is within viewport threshold
-      const visibleRatio = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
-      setActive(visibleRatio >= threshold);
+      // Consider active when the section is within the viewport
+      // rect.bottom >= vh * threshold: Bottom of section is below the top trigger line
+      // rect.top <= vh * (1 - threshold): Top of section is above the bottom trigger line
+      const isActive =
+        rect.bottom >= vh * threshold && rect.top <= vh * (1 - threshold);
+      setActive(isActive);
     };
 
     onScroll();

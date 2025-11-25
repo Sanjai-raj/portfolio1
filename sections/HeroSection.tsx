@@ -15,17 +15,21 @@ const HeroSection: React.FC = () => {
 
       <span
         aria-hidden="true"
-        className="absolute -top-36 rotate-12 text-gra0 dark:text-[#1f2e3a] text-9xl scale-150 tracking-wide font-bold select-none pointer-events-none text-center z-0"
+        className="absolute -top-36 rotate-12 text-gray-100 dark:text-[#1f2e3a] text-9xl scale-150 tracking-wide font-bold select-none pointer-events-none text-center z-0 opacity-10 dark:opacity-20"
       >
-        PASSIONATE PROGRAMMER FREELANCER SOFTWARE DEVELOPER
+        FREELANCER PASSIONATE PROGRAMMER SOFTWARE DEVELOPER
       </span>
 
       <div className="z-10 select-none mt-0 xs:mt-6 sm:mt-14 lg:mt-0 px-0 mx-auto lg:p-0 lg:basis-1/3">
         <div className="relative w-72 md:w-80 h-80 flex items-center mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            animate={{ opacity: 1, scale: 1, y: [-7, 7, -7] }}
+            transition={{
+              opacity: { duration: 0.8, ease: "easeOut" },
+              scale: { duration: 0.8, ease: "easeOut" },
+              y: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+            }}
             className="absolute pointer-events-none scale-90 xs:scale-95 mx-auto"
           >
             <Image
@@ -34,8 +38,8 @@ const HeroSection: React.FC = () => {
               height={1374}
               priority
               id="character-illustration"
-              aria-label="Sat Naing character illustration levitating with a Macbook"
-              alt="Sat Naing character illustration"
+              aria-label="Sanjairaj character illustration levitating with a Macbook"
+              alt="Sanjairaj character illustration"
             />
           </motion.div>
           <motion.div
@@ -44,12 +48,12 @@ const HeroSection: React.FC = () => {
             transition={{
               duration: 0.8,
               delay: 0.5,
-              ease: "easeOut"
+              ease: "easeOut",
             }}
-            className="absolute top-14 sm:top-16 left-0 scale-[.41] xs:scale-[.45] pointer-events-none"
+            className="absolute top-28 sm:top-32 left-0 right-0 mx-auto w-max scale-[.25] xs:scale-[.30] pointer-events-none"
           >
             <motion.div
-              animate={{ y: [-10, 10, -10] }}
+              animate={{ y: [-5, 5, -5] }}
               transition={{
                 duration: 4,
                 repeat: Infinity,
@@ -58,8 +62,8 @@ const HeroSection: React.FC = () => {
             >
               <Image
                 src={laptop}
-                width={559}
-                height={386}
+                width={175}
+                height={250}
                 aria-hidden="true"
                 alt="Laptop illustration"
               />

@@ -8,7 +8,7 @@ tags:
   - ContextAPI
   - Styled-Components
   - TypeScript
-author: Sat Naing
+author: Sanjairaj
 type: article
 coverImage: "/pega.png"
 coverImageAlt: Screenshot of Terminal Portfolio Website
@@ -83,5 +83,5 @@ This is a really fun project, and one special part of this project is I had to f
 
 ## Project Links
 
-- Website: [https://terminal.satnaing.dev/](https://terminal.satnaing.dev/ "https://terminal.satnaing.dev/")
-- Repo: [https://github.com/satnaing/terminal-portfolio](https://github.com/satnaing/terminal-portfolio "https://github.com/satnaing/terminal-portfolio")
+- Website: [https://terminal.sanjairaj.dev/](https://terminal.sanjairaj.dev/ "https://terminal.sanjairaj.dev/")
+- Repo: [https://github.com/Sanjai-raj/terminal-portfolio](https://github.com/Sanjai-raj/terminal-portfolio "https://github.com/Sanjai-raj/terminal-portfolio")

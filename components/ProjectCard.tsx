@@ -68,7 +68,7 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
         {/* LIVE LINK */}
         <div className="mt-auto flex justify-end">
           <a
-            href="#"
+            href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm font-medium text-primary dark:text-primarylight hover:underline group"

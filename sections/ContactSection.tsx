@@ -30,7 +30,7 @@ const ContactSection: React.FC = () => {
       <div className="text-center">
         <RoughNotation
           type="underline"
-          color={`${theme === "light" ? "rgb(0, 122, 122)" : "rgb(5 206 145)"}`}
+          color="#3B82F6"
           strokeWidth={2}
           order={1}
           show={isSecOnScreen}
@@ -53,7 +53,7 @@ const ContactSection: React.FC = () => {
           challenges. If you have opportunities for collaboration or want to
           build something amazing, don't hesitate to contact me!
         </p>
-        <LinkButton href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}>
+        <LinkButton href="mailto:sanjaisundharraj@gmail.com">
           Get in touch!
         </LinkButton>
       </motion.div>

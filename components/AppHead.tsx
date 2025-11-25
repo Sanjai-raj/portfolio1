@@ -22,10 +22,10 @@ const AppHead: React.FC<Props> = ({
   url = `${process.env.NEXT_PUBLIC_URL}/blog`,
   meta,
 }) => {
-  let author = "Sat Naing";
+  let author = "Sanjairaj";
   let description =
     "Articles about programming, coding, technologies, software engineering, my personal projects and my experiences.";
-  let siteName = "Sat Naing's Blog";
+  let siteName = "Sanjairaj's Blog";
   let type = "article";
   let coverImage: string | undefined;
   let coverImageAlt: string | undefined;
@@ -43,7 +43,7 @@ const AppHead: React.FC<Props> = ({
     ogImageAlt = meta.ogImageAlt && meta.ogImageAlt;
   }
 
-  let appOgImage = `${process.env.NEXT_PUBLIC_URL}/satnaing-blog-og.png`;
+  let appOgImage = `${process.env.NEXT_PUBLIC_URL}/sanjairaj-blog-og.png`;
   let appOgImageAlt = "Sanjairaj";
 
   if (ogImage) {
@@ -61,7 +61,6 @@ const AppHead: React.FC<Props> = ({
   return (
     <Head>
       <title>{title}</title>
-      <meta name="author" content={author} />
       <meta name="description" content={description} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
@@ -69,9 +68,13 @@ const AppHead: React.FC<Props> = ({
       <meta property="og:image:alt" content={appOgImageAlt} />
       <meta property="og:url" content={url} />
       <meta property="og:site_name" content={siteName} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image:alt" content={appOgImageAlt} />
       <meta property="og:type" content={type} />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="author" content={author} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@sanjairaj" />
+      <meta name="twitter:creator" content="@sanjairaj" />
+      <meta name="twitter:image:alt" content={appOgImageAlt} />
     </Head>
   );
 };

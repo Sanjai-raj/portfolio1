@@ -41,7 +41,7 @@ const BlogHeader: React.FC = () => {
             href="/blog"
             className="after:content-['blog'] after:bg-bgdark dark:after:bg-bglight after:text-textlight dark:after:text-bgdark after:text-base after:px-2 after:inline-block after:rotate-12 after:absolute after:-right-12 hover:after:rotate-0 relative text-xl sm:text-2xl hover:text-marrsgreen dark:hover:text-carrigreen focus-visible:outline-marrsgreen dark:focus-visible:outline-carrigreen"
           >
-            SatNaing
+            Sanjairaj
             <span className="text-marrsgreen dark:text-carrigreen">.dev</span>
           </Link>
           <nav className="flex items-center">
@@ -55,9 +55,8 @@ const BlogHeader: React.FC = () => {
                     <Link
                       href={navLink.url}
                       className={`text-sm md:text-lg flex flex-col items-center w-[4.5rem] md:w-auto md:mr-6  dark:fill-textlight md:hover:text-marrsgreen md:dark:hover:text-carrigreen link-outline
-                        ${
-                          router.pathname === navLink.url &&
-                          "text-marrsgreen dark:text-carrigreen fill-marrsgreen dark:fill-carrigreen"
+                        ${router.pathname === navLink.url &&
+                        "text-marrsgreen dark:text-carrigreen fill-marrsgreen dark:fill-carrigreen"
                         }`}
                     >
                       <span className="md:hidden">{navLink.svg}</span>

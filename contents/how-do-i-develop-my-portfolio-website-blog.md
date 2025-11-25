@@ -7,8 +7,7 @@ tags:
   - TailwindCSS
   - HeadlessCMS
   - Blog
-author: Sat Naing
-type: article
+author: Sanjairaj
 coverImage: "/udemy.png"
 coverImageAlt: Macbook at a cafe
 title: Web Development
@@ -25,7 +24,7 @@ My experience about developing my first portfolio website and a blog using NextJ
 
 ## Motivation
 
-I've been always thinking about launching my own website with my custom domain name (**satnaing.dev**) since my college student life. But that never happened until this project. I've done several projects and works about web application development but I didn't make an effort to do this.
+I've been always thinking about launching my own website with my custom domain name (**sanjairaj.dev**) since my college student life. But that never happened until this project. I've done several projects and works about web application development but I didn't make an effort to do this.
 
 So, "what about blog?" you may ask. Yeah, blog also has been in my project list for some time. I always wanted to make a blog project using some of the latest technologies. However, I've been busy with my works and other projects so that blog project has never been started.
 
@@ -57,13 +56,13 @@ The following are certain features of my portfolio and blog
 
 The entire project is developed with SEO focus in mind. I've used proper meta tags, descriptions and heading alignments. This website is now indexed by Google.
 
-> You can search this website on google by using keywords like 'sat naing dev'
+> You can search this website on google by using keywords like 'sanjairaj dev'
 
-![searching satnaing.dev on google](https://res.cloudinary.com/noezectz/image/upload/v1648231400/SatNaing/satnaing-on-google_asflq6.png "satnaing.dev is indexed")
+![searching sanjairaj.dev on google](https://res.cloudinary.com/noezectz/image/upload/v1648231400/SatNaing/satnaing-on-google_asflq6.png "sanjairaj.dev is indexed")
 
 Moreover, this website will be displayed well when shared to social media due to properly used meta tags.
 
-![satnaing.dev card layout when shared to Facebook](https://res.cloudinary.com/noezectz/image/upload/v1653106955/SatNaing/satnaing-dev-share-on-facebook_1_zjoehx.png "Card layout when shared to Facebook")
+![sanjairaj.dev card layout when shared to Facebook](https://res.cloudinary.com/noezectz/image/upload/v1653106955/SatNaing/satnaing-dev-share-on-facebook_1_zjoehx.png "Card layout when shared to Facebook")
 
 ### Dynamic Sitemap
 
@@ -85,13 +84,13 @@ All blog contents can be searched by search box. Moreover, contents can be filte
 
 This website got very good performance and lighthouse score thanks to proper development and best practices. Here's the lighthouse score for this website.
 
-![satnaing.dev Lighthouse score](https://user-images.githubusercontent.com/53733092/159957822-7082e459-11e9-4616-8f1e-49d0881f7cbb.png "satnaing.dev Lighthouse score")
+![sanjairaj.dev Lighthouse score](https://user-images.githubusercontent.com/53733092/159957822-7082e459-11e9-4616-8f1e-49d0881f7cbb.png "sanjairaj.dev Lighthouse score")
 
 ### Animations
 
 Initially I used [Framer Motion](https://www.framer.com/motion/ "Framer Motion") to add animations and micro interactions for this website. However, when I tried to use some complex animations and parallax effects, I found it inconvenient to integrate with Framer Motion (Maybe I'm not very good at and used to working with it). Hence, I decided to use [GSAP](https://greensock.com/ "GSAP Animation Library") for all of my animations. It is one of the most popular animation library and it is capable of doing complex and advanced animations. You can see animations and micro interactions on pretty much every page of this website.
 
-![animations at satnaing.dev](https://res.cloudinary.com/noezectz/image/upload/v1653108324/SatNaing/ezgif.com-gif-maker_2_hehtlm.gif "satnaing.dev website")
+![animations at sanjairaj.dev](https://res.cloudinary.com/noezectz/image/upload/v1653108324/SatNaing/ezgif.com-gif-maker_2_hehtlm.gif "sanjairaj.dev website")
 
 ## Outro
 
@@ -101,6 +100,6 @@ And... last but not least, I would like to say 'thanks' to my friend [Swann Fevi
 
 ## Project Links
 
-- Website: [https://satnaing.dev/](https://satnaing.dev/ "https://satnaing.dev/")
-- Blog: [https://satnaing.dev/blog](https://satnaing.dev/blog "https://satnaing.dev/blog")
-- Repo: [https://github.com/satnaing/my-portfolio](https://github.com/satnaing/my-portfolio "https://github.com/satnaing/my-portfolio")
+- Website: [https://sanjairaj.dev/](https://sanjairaj.dev/ "https://sanjairaj.dev/")
+- Blog: [https://sanjairaj.dev/blog](https://sanjairaj.dev/blog "https://sanjairaj.dev/blog")
+- Repo: [https://github.com/Sanjai-raj/portfolio](https://github.com/Sanjai-raj/portfolio "https://github.com/Sanjai-raj/portfolio")
