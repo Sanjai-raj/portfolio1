@@ -14,6 +14,7 @@ type Props = {
     title: string;
     excerpt: string;
     datetime: string;
+    certificateLink?: string;
   };
   fullWH?: boolean;
   className?: string;
@@ -24,7 +25,15 @@ const BlogImageCard: React.FC<Props> = ({
   fullWH = false,
   className = "",
 }) => {
-  const { title, coverImage, coverImageAlt, slug, excerpt, datetime } = post;
+  const {
+    title,
+    coverImage,
+    coverImageAlt,
+    slug,
+    excerpt,
+    datetime,
+    certificateLink,
+  } = post;
 
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -63,60 +72,54 @@ const BlogImageCard: React.FC<Props> = ({
   return (
     <div
       ref={sectionRef}
-      className={`sm:min-w-[17rem] transition translate-y-2 hover:-translate-y-0 max-w-md bg-gray-100 dark:bg-carddark p-4 rounded shadow-md hover:shadow-xl ${
-        fullWH ? "w-full" : "w-72 my-2"
-      } ${className}`}
+      className={`sm:min-w-[17rem] transition translate-y-2 hover:-translate-y-0 max-w-md bg-gray-100 dark:bg-carddark rounded shadow-md hover:shadow-xl ${fullWH ? "w-full" : "w-72 my-2"
+        } ${className}`}
     >
-      <div className="flex flex-col-reverse">
-        <div className="mb-2 overflow-hidden h-14">
-          <Link
-            href={`/blog/posts/${slug}`}
-            className="blog-title link inline-block outline-none dark:outline-none focus-within:underline"
-          >
+      
+        <div className="flex flex-col-reverse">
+          <div className="mb-2 overflow-hidden h-14">
             <h3
-              className={`${
-                fullWH ? "text-lg sm:text-md" : "text-md"
-              } font-medium line-clamp-2`}
+              className={`${fullWH ? "text-lg sm:text-md" : "text-md"
+                } font-medium line-clamp-2 blog-title`}
             >
               {title}
             </h3>
-          </Link>
+          </div>
+          <div className="blog-image relative w-full h-48 md:h-40 mb-3">
+            <Image
+              src={coverImage!}
+              sizes="100vw"
+              fill
+              className="object-contain"
+              alt={coverImageAlt ?? title}
+            />
+          </div>
         </div>
-        <div className="blog-image relative w-full h-48 md:h-40 mb-3">
-          <Image
-            src={coverImage!}
-            sizes="100vw"
-            fill
-            className="object-contain"
-            alt={coverImageAlt ?? title}
-          />
+        <div className="italic text-sm mb-1 text-carddark dark:text-gray-300 flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+          <DateTime datetime={datetime} />
         </div>
-      </div>
-      <div className="italic text-sm mb-1 text-carddark dark:text-gray-300 flex items-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4 mr-2"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          aria-hidden="true"
-          strokeWidth={2}
+        <p
+          className={`blog-text dark:text-gray-300 ${fullWH ? "text-base sm:text-sm" : "text-sm w-60"
+            } overflow-hidden text-ellipsis line-clamp-4 leading-7 sm:leading-6`}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-          />
-        </svg>
-        <DateTime datetime={datetime} />
-      </div>
-      <p
-        className={`blog-text dark:text-gray-300 ${
-          fullWH ? "text-base sm:text-sm" : "text-sm w-60"
-        } overflow-hidden text-ellipsis line-clamp-4 leading-7 sm:leading-6`}
-      >
-        {excerpt}
-      </p>
+          {excerpt}
+        </p>
+      
     </div>
   );
 };

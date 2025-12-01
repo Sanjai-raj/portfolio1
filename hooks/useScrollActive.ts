@@ -8,7 +8,8 @@ export default function useScrollActive(ref: React.RefObject<HTMLElement | null>
     if (!ref.current) return;
 
     const onScroll = () => {
-      const rect = ref.current!.getBoundingClientRect();
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
       const vh = window.innerHeight || document.documentElement.clientHeight;
       // Consider active when the section is within the viewport
       // rect.bottom >= vh * threshold: Bottom of section is below the top trigger line

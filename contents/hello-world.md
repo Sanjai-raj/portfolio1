@@ -21,6 +21,7 @@ ogImage: https://res.cloudinary.com/noezectz/image/upload/v1647688482/SatNaing/h
 ogImageAlt: python certificate
 type: article
 language: "English"
+certificateLink: https://www.google.com
 ---
 
 

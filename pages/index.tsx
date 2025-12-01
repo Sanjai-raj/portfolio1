@@ -66,6 +66,7 @@ export const getStaticProps: GetStaticProps = async () => {
     "excerpt",
     "datetime",
     "featured",
+    "certificateLink",
   ]);
 
   return {
